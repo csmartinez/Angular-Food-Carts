@@ -1,0 +1,7 @@
+pairs:
+  # <initials>: <Firstname> <Lastname>[; <email-id>]
+  csm: Carli Martinez
+  sjc: Sarah Joy Calpo
+email_addresses:
+  csm: martinezcarli@gmail.com
+  sjc: sajoy.pc@gmail.com
