@@ -10,7 +10,6 @@ foodcartRoster.controller('FoodCartsCtrl', function FoodCartsCtrl($scope) {
     $scope.foodCartName = null;
     $scope.foodCartLocation = null;
     $scope.foodCartType = null;
-    $scope.foodCartPrice = null;
   };
   $scope.deleteFoodCart = function(cart) {
     var index = $scope.foodcarts.indexOf(cart);

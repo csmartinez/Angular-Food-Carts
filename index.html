@@ -36,27 +36,55 @@
                 <th>Location</th>
                 <th>Type</th>
                 <th>Price Range</th>
-                <th>Delete Cart</th>
               </tr>
-              <tr ng-repeat= "item in filtered = (foodcarts | filter:query)">
-                <td ng-click="editing = true" ng-hide="editing">{{item.name}}</td >
-                <td ng-click="editing = true" ng-hide="editing">{{item.location}}</td >
-                <td ng-click="editing = true" ng-hide="editing">{{item.type}}</td >
-                <td ng-click="editing = true" ng-hide="editing">{{item.pricerange}}</td >
-                <td> <a ng-click="deleteFoodCart(item)">Delete</a> </td>
-              </tr>
-                <span class="form-group" ng-show="editing" ng-submit="editing = false">
-                  <tr>
-                  <form class="form-inline" role="form">
-                    <td><input type="text" class="form-control input-sm" ng-model="item.name" placeholder="Name" required/></td>
-                    <td><input type="text" class="form-control input-sm" ng-model="item.location" placeholder="Location" required/></td>
-                    <td><input type="text" class="form-control input-sm" ng-model="item.type" placeholder="Type" required/></td>
-                    <td><input type="text" class="form-control input-sm" ng-model="item.pricerange" placeholder="Price range" required/></td>
-                    <td><button class="btn btn-default btn-sm" type="submit">Save</button></td>
-                  </form>
+                <tr ng-repeat= "item in filtered = (foodcarts | filter:query)">
+                  <span ng-submit="editing = false" class="form-group">
+                  <td>
+                    <span ng-click="editing = true" ng-hide="editing">
+                      {{item.name}}
+                    </span>
+                    <span ng-show="editing">
+                      <form role="form">
+                      <input type="text" class="form-control input-sm" ng-model="item.name" placeholder="Name" required/>
+                    </span>
+                  </td>
+                  <td>
+                    <span ng-click="editing = true" ng-hide="editing">
+                      {{item.location}}
+                    </span>
+                    <span ng-show="editing">
+                      <input type="text" class="form-control input-sm" ng-model="item.location" placeholder="Location" required/>
+                    </span>
+                  </td>
+                  <td>
+                    <span ng-click="editing = true" ng-hide="editing">
+                      {{item.type}}
+                    </span>
+                    <span ng-show="editing">
+                      <input type="text" class="form-control input-sm" ng-model="item.type" placeholder="Type" required/>
+                    </span>
+                  </td>
+                  <td>
+                    <span ng-click="editing = true" ng-hide="editing">
+                      {{item.pricerange}}
+                    </span>
+                    <span ng-show="editing">
+                      <input type="text" class="form-control input-sm" ng-model="item.pricerange" placeholder="Price" required/>
+                    </span>
+                  </td>
+                  <td ng-show="editing">
+                    <span>
+                      <button class="btn btn-default btn-sm" type="submit" ng-click="editing = false">Save</button>
+                      </form>
+                    </span>
+                  </td>
+                  <td ng-show="editing">
+                    <span>
+                      <a ng-click="deleteFoodCart(item)" class="btn btn-default btn-sm">Delete</a>
+                    </span>
+                  </td>
+                </span>
                 </tr>
-              </span>
-              </li>
             </table>
           </div>
       <div class="col-md-6">
@@ -73,7 +101,11 @@
               <input type="text" ng-model="foodCartType" class="form-control" placeholder="Enter type">
             </div></li>
             <li><div class="form-group">
-              <input type="text" ng-model="foodCartPrice" class="form-control" placeholder="Enter price">
+              <select ng-selected="$first" ng-init="foodCartPrice='Reasonable'" ng-model="foodCartPrice" class="form-control">
+                <option value="Cheap">Cheap</option>
+                <option value="Reasonable">Reasonable</option>
+                <option value="Expensive">Expensive</option>
+              </select>
             </div></li>
             <button type="submit" class="btn btn-primary">Submit</button>
       </div>
