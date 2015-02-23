@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <script src="lib/angular.js"></script>
+    <script src="lib/angular-animate.js"></script>
     <script src="app.js"></script>
     <script src="js/foodcartsController.js"></script>
     <title>Food Carts!</title>
@@ -32,12 +33,12 @@
           <h1 ng-show="foodcarts.length && !filtered.length">No Matches</h1>
             <table class="foodCarts" ng-show="foodcarts.length && filtered.length">
               <tr>
-                <th>Name</th>
-                <th>Location</th>
-                <th>Type</th>
-                <th>Price Range</th>
+                <th> <a href="" ng-click="predicate = 'name'; reverse = !reverse" >Name</a></th>
+                <th><a href="" ng-click="predicate = 'location'; reverse = !reverse" >Location</a></th>
+                <th><a href="" ng-click="predicate = 'type'; reverse = !reverse" >Type</a></th>
+                <th><a href="" ng-click="predicate = 'pricerange'; reverse = !reverse" >Price Range</a></th>
               </tr>
-                <tr ng-repeat= "item in filtered = (foodcarts | filter:query)">
+                <tr class="animate-repeat" ng-repeat= "item in filtered = (foodcarts | filter:query | orderBy:predicate:reverse)">
                   <span ng-submit="editing = false" class="form-group">
                   <td>
                     <span ng-click="editing = true" ng-hide="editing">
@@ -69,7 +70,11 @@
                       {{item.pricerange}}
                     </span>
                     <span ng-show="editing">
-                      <input type="text" class="form-control input-sm" ng-model="item.pricerange" placeholder="Price" required/>
+                      <select ng-model="item.pricerange" class="form-control">
+                        <option value="Cheap">Cheap</option>
+                        <option value="Moderate">Moderate</option>
+                        <option value="Pricey">Pricey</option>
+                      </select>
                     </span>
                   </td>
                   <td ng-show="editing">
@@ -101,10 +106,10 @@
               <input type="text" ng-model="foodCartType" class="form-control" placeholder="Enter type">
             </div></li>
             <li><div class="form-group">
-              <select ng-selected="$first" ng-init="foodCartPrice='Reasonable'" ng-model="foodCartPrice" class="form-control">
+              <select ng-init="foodCartPrice='Moderate'" ng-model="foodCartPrice" class="form-control">
                 <option value="Cheap">Cheap</option>
-                <option value="Reasonable">Reasonable</option>
-                <option value="Expensive">Expensive</option>
+                <option value="Moderate">Moderate</option>
+                <option value="Pricey">Pricey</option>
               </select>
             </div></li>
             <button type="submit" class="btn btn-primary">Submit</button>

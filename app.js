@@ -1,1 +1,1 @@
-var foodcartRoster = angular.module('foodcartRoster', []);
+var foodcartRoster = angular.module('foodcartRoster', ['ngAnimate']);

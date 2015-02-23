@@ -14,6 +14,6 @@ foodcartRoster.controller('FoodCartsCtrl', function FoodCartsCtrl($scope) {
   $scope.deleteFoodCart = function(cart) {
     var index = $scope.foodcarts.indexOf(cart);
     $scope.foodcarts.splice(index,1);
-
   };
+  $scope.predicate = '';
 })
