@@ -2,6 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
     <script src="lib/angular.js"></script>
     <script src="app.js"></script>
     <script src="js/foodcartsController.js"></script>
@@ -9,54 +10,72 @@
   </head>
   <body ng-app="foodcartRoster">
     <div class="container" ng-controller="FoodCartsCtrl">
-      <div class="row">
+      <div id="searchBox">
+        <span class ="glyphicon glyphicon-search" ng-mouseover="searching = true"></span>
+        <form class="form-inline" role="form" ng-show="searching">
+          <div class="form-group has-feedback">
+            <input type="text" ng-mouseover="searching = true" ng-mouseleave="searching = false" ng-model="query" ng-model-options="{ getterSetter: true }" class="form-control" placeholder="Search">
+            <a class="clear" ng-click="query = null">
+              <span class="glyphicon glyphicon-remove"></span>
+            </a>
+          </div>
+        </form>
+      </div>
+      <div class="row" ng-show="searching">
         <div class="col-md-12">
-          <h4> Search Food Carts </h4>
-          <form class="form-inline" role="form">
-            <div class="form-group">
-              <input type="text" ng-model="query" class="form-control" placeholder="Search">
-            </div>
-          </form>
+          <p>Searching for: <span ng-bind="query"></span></p>
         </div>
       </div>
-
       <div class="row">
         <div class="col-md-6">
           <h1 ng-show="foodcarts.length && filtered.length">Food Cart List</h1>
           <h1 ng-show="foodcarts.length && !filtered.length">No Matches</h1>
-            <ul>
-              <li ng-repeat= "item in filtered = (foodcarts | filter:query)">
-                <span ng-click="editing = true" ng-hide="editing">
-                  <strong>{{item.name}}</strong> {{item.location}} {{item.type}} {{item.pricerange}} <a ng-click="deleteFoodCart(item)">Delete</a>
-                </span>
+            <table class="foodCarts" ng-show="foodcarts.length && filtered.length">
+              <tr>
+                <th>Name</th>
+                <th>Location</th>
+                <th>Type</th>
+                <th>Price Range</th>
+                <th>Delete Cart</th>
+              </tr>
+              <tr ng-repeat= "item in filtered = (foodcarts | filter:query)">
+                <td ng-click="editing = true" ng-hide="editing">{{item.name}}</td >
+                <td ng-click="editing = true" ng-hide="editing">{{item.location}}</td >
+                <td ng-click="editing = true" ng-hide="editing">{{item.type}}</td >
+                <td ng-click="editing = true" ng-hide="editing">{{item.pricerange}}</td >
+                <td> <a ng-click="deleteFoodCart(item)">Delete</a> </td>
+              </tr>
                 <span class="form-group" ng-show="editing" ng-submit="editing = false">
+                  <tr>
                   <form class="form-inline" role="form">
-                    <input type="text" class="form-control input-sm" ng-model="item.name" placeholder="Name" required/>
-                    <input type="text" class="form-control input-sm" ng-model="item.location" placeholder="Location" required/>
-                    <input type="text" class="form-control input-sm" ng-model="item.type" placeholder="Type" required/>
-                    <input type="text" class="form-control input-sm" ng-model="item.pricerange" placeholder="Price range" required/>
-                    <button class="btn btn-default btn-sm" type="submit">Save</button>
+                    <td><input type="text" class="form-control input-sm" ng-model="item.name" placeholder="Name" required/></td>
+                    <td><input type="text" class="form-control input-sm" ng-model="item.location" placeholder="Location" required/></td>
+                    <td><input type="text" class="form-control input-sm" ng-model="item.type" placeholder="Type" required/></td>
+                    <td><input type="text" class="form-control input-sm" ng-model="item.pricerange" placeholder="Price range" required/></td>
+                    <td><button class="btn btn-default btn-sm" type="submit">Save</button></td>
                   </form>
-                </span>
+                </tr>
+              </span>
               </li>
-            </ul>
+            </table>
           </div>
       <div class="col-md-6">
         <h2>New Food Cart</h2>
           <form ng-submit="addCart()" class="form-inline" role="form">
-            <div class="form-group">
+            <ul>
+              <li><div class="form-group">
               <input type="text" ng-model="foodCartName" class="form-control" placeholder="Enter name">
-            </div>
-            <div class="form-group">
+            </div></li>
+            <li><div class="form-group">
               <input type="text" ng-model="foodCartLocation" class="form-control" placeholder="Enter location">
-            </div>
-            <div class="form-group">
+            </div></li>
+            <li><div class="form-group">
               <input type="text" ng-model="foodCartType" class="form-control" placeholder="Enter type">
-            </div>
-            <div class="form-group">
+            </div></li>
+            <li><div class="form-group">
               <input type="text" ng-model="foodCartPrice" class="form-control" placeholder="Enter price">
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            </div></li>
+            <button type="submit" class="btn btn-primary">Submit</button>
       </div>
     </div>
   </body>

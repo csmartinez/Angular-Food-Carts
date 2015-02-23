@@ -1,0 +1,23 @@
+#searchBox {
+  position: fixed;
+  top: 5px;
+  right: 5px;
+  height: 100px;
+  z-index: 3;
+
+}
+
+#searchBox form {
+  display: inline;
+}
+
+
+li {
+  list-style: none;
+}
+
+table tr, td, th {
+  padding: 10px;
+  text-align: center;
+
+}
