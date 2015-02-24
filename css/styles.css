@@ -1,4 +1,4 @@
-#searchBox {
+.corner {
   position: fixed;
   top: 5px;
   right: 5px;
@@ -7,7 +7,12 @@
 
 }
 
-#searchBox form {
+.add {
+  position: fixed;
+  top: 100px;
+}
+
+.corner form {
   display: inline;
 }
 
@@ -20,6 +25,24 @@ table tr, td, th {
   padding: 10px;
   text-align: center;
 
+}
+
+.corner .glyphicon {
+  font-size: 4em;
+
+}
+
+.fa {
+  font-size: 4em;
+
+}
+.corner .glyphicon:hover, .fa:hover {
+  color: gray;
+
+}
+
+.addForm {
+  padding: 0 0 40px 0;
 }
 
 

@@ -2,6 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/styles.css">
     <script src="lib/angular.js"></script>
     <script src="lib/angular-animate.js"></script>
@@ -11,7 +12,7 @@
   </head>
   <body ng-app="foodcartRoster">
     <div class="container" ng-controller="FoodCartsCtrl">
-      <div id="searchBox">
+      <div class="corner">
         <span class ="glyphicon glyphicon-search" ng-mouseover="searching = true"></span>
         <form class="form-inline" role="form" ng-show="searching">
           <div class="form-group has-feedback">
@@ -22,9 +23,37 @@
           </div>
         </form>
       </div>
+      <div class="corner add">
+        <span ng-click="add = !add"><i class="fa fa-truck"></i></span>
+      </div>
+
+      <div class="row addForm" ng-show="add">
+        <div class="col-md-12">
+        <h2><strong>New Food Cart</strong></h2>
+          <form ng-submit="addCart()" class="form-inline" role="form">
+            <div class="form-group">
+              <input type="text" ng-model="foodCartName" class="form-control" placeholder="Enter name" required/>
+            </div>
+            <div class="form-group">
+              <input type="text" ng-model="foodCartLocation" class="form-control" placeholder="Enter location" required/>
+            </div>
+            <div class="form-group">
+              <input type="text" ng-model="foodCartType" class="form-control" placeholder="Enter type" required/>
+            </div>
+            <div class="form-group">
+              <select ng-init="foodCartPrice='Moderate'" ng-model="foodCartPrice" class="form-control" required/>
+                <option value="Cheap">Cheap</option>
+                <option value="Moderate">Moderate</option>
+                <option value="Pricey">Pricey</option>
+              </select>
+            </div>
+            <button type="submit" ng-click="add = false" class="btn btn-primary">Submit</button>
+          </div>
+      </div>
+
       <div class="row" ng-show="searching">
         <div class="col-md-12">
-          <p>Searching for: <span ng-bind="query"></span></p>
+          <h1>Searching for: <span ng-bind="query"></span></h1>
         </div>
       </div>
       <div class="row">
@@ -92,28 +121,6 @@
                 </tr>
             </table>
           </div>
-      <div class="col-md-6">
-        <h2><strong>New Food Cart</strong></h2>
-          <form ng-submit="addCart()" class="form-inline" role="form">
-            <ul>
-              <li><div class="form-group">
-              <input type="text" ng-model="foodCartName" class="form-control" placeholder="Enter name" required/>
-            </div></li>
-            <li><div class="form-group">
-              <input type="text" ng-model="foodCartLocation" class="form-control" placeholder="Enter location" required/>
-            </div></li>
-            <li><div class="form-group">
-              <input type="text" ng-model="foodCartType" class="form-control" placeholder="Enter type" required/>
-            </div></li>
-            <li><div class="form-group">
-              <select ng-init="foodCartPrice='Moderate'" ng-model="foodCartPrice" class="form-control" required/>
-                <option value="Cheap">Cheap</option>
-                <option value="Moderate">Moderate</option>
-                <option value="Pricey">Pricey</option>
-              </select>
-            </div></li>
-            <button type="submit" class="btn btn-primary">Submit</button>
-      </div>
     </div>
   </body>
 </html>
