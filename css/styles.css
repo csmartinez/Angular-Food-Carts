@@ -21,10 +21,17 @@ li {
   list-style: none;
 }
 
+table {
+  table-layout: fixed;
+  width: 800px;
+}
+
 table tr, td, th {
   padding: 10px;
-  text-align: center;
+}
 
+td, th {
+  width: 150px;
 }
 
 .corner .glyphicon {
