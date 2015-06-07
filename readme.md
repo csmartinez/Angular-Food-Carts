@@ -3,6 +3,8 @@ Store Food Carts with their name, location, type and price range. Search for Foo
 
 Ruby version 2.2
 
+![alt tag](https://raw.github.com/csmartinez/Angular-Food-Carts/master/screenshot.png)
+
 ##Project Setup
 
 1. `open index.html in a google chrome browser'
